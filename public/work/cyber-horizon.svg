@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#05021a"/>
+      <stop offset=".55" stop-color="#3b0a6b"/>
+      <stop offset="1" stop-color="#ff3fb4"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff36b"/>
+      <stop offset="1" stop-color="#ff3fb4"/>
+    </linearGradient>
+    <clipPath id="sunclip"><circle cx="400" cy="480" r="190"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#sky)"/>
+  <g fill="#fff">
+    <circle cx="80" cy="90" r="2"/><circle cx="210" cy="180" r="1.5"/><circle cx="690" cy="70" r="2.5"/>
+    <circle cx="560" cy="160" r="1.5"/><circle cx="380" cy="60" r="1.5"/><circle cx="740" cy="250" r="1"/>
+  </g>
+  <g clip-path="url(#sunclip)">
+    <rect x="200" y="280" width="400" height="400" fill="url(#sun)"/>
+    <g fill="#3b0a6b">
+      <rect x="200" y="500" width="400" height="8"/><rect x="200" y="530" width="400" height="12"/>
+      <rect x="200" y="566" width="400" height="16"/><rect x="200" y="606" width="400" height="22"/>
+    </g>
+  </g>
+  <rect x="0" y="640" width="800" height="360" fill="#0a0420"/>
+  <g stroke="#3ef0ff" stroke-width="2.5" opacity=".9">
+    <line x1="0" y1="640" x2="800" y2="640"/>
+    <line x1="0" y1="660" x2="800" y2="660"/><line x1="0" y1="688" x2="800" y2="688"/>
+    <line x1="0" y1="726" x2="800" y2="726"/><line x1="0" y1="778" x2="800" y2="778"/>
+    <line x1="0" y1="848" x2="800" y2="848"/><line x1="0" y1="944" x2="800" y2="944"/>
+    <line x1="400" y1="640" x2="400" y2="1000"/>
+    <line x1="350" y1="640" x2="200" y2="1000"/><line x1="450" y1="640" x2="600" y2="1000"/>
+    <line x1="300" y1="640" x2="0" y2="1000"/><line x1="500" y1="640" x2="800" y2="1000"/>
+    <line x1="250" y1="640" x2="-200" y2="1000"/><line x1="550" y1="640" x2="1000" y2="1000"/>
+    <line x1="200" y1="640" x2="-400" y2="1000"/><line x1="600" y1="640" x2="1200" y2="1000"/>
+  </g>
+  <path d="M0 640 L120 560 L200 610 L290 530 L360 640Z M440 640 L520 560 L600 600 L700 520 L800 590 V640Z" fill="#14072e" stroke="#ff3fb4" stroke-width="2"/>
+</svg>

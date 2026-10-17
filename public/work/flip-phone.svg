@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbe9ff"/>
+      <stop offset="1" stop-color="#ffc4ea"/>
+    </linearGradient>
+    <linearGradient id="shell" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff6fcf"/>
+      <stop offset=".3" stop-color="#ffd0f1"/>
+      <stop offset=".55" stop-color="#ff8ad9"/>
+      <stop offset="1" stop-color="#d93fa8"/>
+    </linearGradient>
+    <linearGradient id="lcd" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9ffe9"/>
+      <stop offset="1" stop-color="#7ee8c4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <g fill="none" stroke="#ff6fcf" stroke-width="3" opacity=".35">
+    <path d="M0 860 Q 200 800 400 860 T 800 860"/><path d="M0 900 Q 200 840 400 900 T 800 900"/>
+  </g>
+  <g transform="rotate(10 400 500)">
+    <rect x="270" y="120" width="260" height="360" rx="60" fill="url(#shell)" stroke="#fff" stroke-width="6"/>
+    <rect x="305" y="170" width="190" height="230" rx="22" fill="#2b1838"/>
+    <rect x="320" y="185" width="160" height="200" rx="14" fill="url(#lcd)"/>
+    <text x="400" y="270" text-anchor="middle" font-family="monospace" font-size="40" fill="#1d4d3d">12:00</text>
+    <text x="400" y="320" text-anchor="middle" font-family="monospace" font-size="22" fill="#1d4d3d">1 new msg</text>
+    <path d="M370 345 q 15 -18 30 0 q 15 -18 30 0 q 0 18 -30 34 q -30 -16 -30 -34z" fill="#ff3fb4"/>
+    <rect x="250" y="478" width="300" height="30" rx="15" fill="#c43394"/>
+    <rect x="270" y="505" width="260" height="380" rx="60" fill="url(#shell)" stroke="#fff" stroke-width="6"/>
+    <rect x="345" y="535" width="110" height="60" rx="30" fill="#ffe2f6"/>
+    <g fill="#ffe2f6">
+      <rect x="305" y="620" width="54" height="36" rx="12"/><rect x="373" y="620" width="54" height="36" rx="12"/><rect x="441" y="620" width="54" height="36" rx="12"/>
+      <rect x="305" y="670" width="54" height="36" rx="12"/><rect x="373" y="670" width="54" height="36" rx="12"/><rect x="441" y="670" width="54" height="36" rx="12"/>
+      <rect x="305" y="720" width="54" height="36" rx="12"/><rect x="373" y="720" width="54" height="36" rx="12"/><rect x="441" y="720" width="54" height="36" rx="12"/>
+      <rect x="305" y="770" width="54" height="36" rx="12"/><rect x="373" y="770" width="54" height="36" rx="12"/><rect x="441" y="770" width="54" height="36" rx="12"/>
+    </g>
+    <path d="M300 160 Q 310 140 340 135" stroke="#fff" stroke-width="10" fill="none" stroke-linecap="round" opacity=".8"/>
+  </g>
+  <g fill="#ff3fb4">
+    <path d="M130 200 l8 26 26 8 -26 8 -8 26 -8 -26 -26 -8 26 -8z"/>
+    <path d="M680 760 l10 32 32 10 -32 10 -10 32 -10 -32 -32 -10 32 -10z"/>
+  </g>
+</svg>

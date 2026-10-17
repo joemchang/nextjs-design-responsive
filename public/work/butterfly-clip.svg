@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d7ff5c"/>
+      <stop offset="1" stop-color="#7dffb2"/>
+    </linearGradient>
+    <linearGradient id="wing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff7ae0"/>
+      <stop offset=".35" stop-color="#b48cff"/>
+      <stop offset=".7" stop-color="#6fe3ff"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="wing2" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff7ae0"/>
+      <stop offset=".35" stop-color="#b48cff"/>
+      <stop offset=".7" stop-color="#6fe3ff"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <pattern id="check" width="80" height="80" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="#000" opacity=".06"/>
+      <rect x="40" y="40" width="40" height="40" fill="#000" opacity=".06"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <rect width="800" height="1000" fill="url(#check)"/>
+  <g transform="rotate(-12 400 500)" stroke="#fff" stroke-width="8" stroke-linejoin="round">
+    <path d="M392 470 C 300 280 120 250 130 380 C 138 480 260 520 380 500 Z" fill="url(#wing)"/>
+    <path d="M408 470 C 500 280 680 250 670 380 C 662 480 540 520 420 500 Z" fill="url(#wing2)"/>
+    <path d="M385 515 C 280 540 190 640 260 700 C 320 750 380 640 395 540 Z" fill="url(#wing2)"/>
+    <path d="M415 515 C 520 540 610 640 540 700 C 480 750 420 640 405 540 Z" fill="url(#wing)"/>
+    <rect x="386" y="430" width="28" height="200" rx="14" fill="#2b2140"/>
+  </g>
+  <g fill="#fff" opacity=".85">
+    <circle cx="250" cy="380" r="18"/><circle cx="560" cy="360" r="12"/><circle cx="300" cy="650" r="10"/>
+  </g>
+  <g fill="#2b2140">
+    <path d="M110 840 l8 26 26 8 -26 8 -8 26 -8 -26 -26 -8 26 -8z"/>
+    <path d="M690 140 l12 38 38 12 -38 12 -12 38 -12 -38 -38 -12 38 -12z"/>
+  </g>
+</svg>

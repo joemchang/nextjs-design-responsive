@@ -1,26 +1,334 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f6f3ff;
+  --card: #ffffff;
+  --ink: #160f2b;
+  --muted: #5d5578;
+  --line: #160f2b;
+  --shadow: #160f2b;
+  --pink: #ff3fb4;
+  --cyan: #2fd8ff;
+  --lime: #c8ff3d;
+  --violet: #7a4dff;
+  --grid: rgb(22 15 43 / 0.07);
+  --chrome: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #c3c9da 30%,
+    #4a5068 49%,
+    #eef0f7 52%,
+    #9aa1b8 78%,
+    #ffffff 100%
+  );
+  --iridescent: linear-gradient(
+    120deg,
+    var(--pink),
+    var(--violet),
+    var(--cyan),
+    var(--lime),
+    var(--pink)
+  );
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* Dark tokens: follow the OS unless the visitor picked light via the toggle,
+   or force dark when they picked it. Keep both blocks in sync. */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --paper: #0c0818;
+    --card: #171028;
+    --ink: #f3eeff;
+    --muted: #a59cc4;
+    --line: #f3eeff;
+    --shadow: #ff3fb4;
+    --grid: rgb(243 238 255 / 0.06);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0c0818;
+  --card: #171028;
+  --ink: #f3eeff;
+  --muted: #a59cc4;
+  --line: #f3eeff;
+  --shadow: #ff3fb4;
+  --grid: rgb(243 238 255 / 0.06);
+  color-scheme: dark;
+}
+
+/* Tailwind's dark: variant should track the same rules. */
+@custom-variant dark {
+  :root[data-theme="dark"] & {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) & {
+      @slot;
+    }
   }
 }
 
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-pink: var(--pink);
+  --color-cyan: var(--cyan);
+  --color-lime: var(--lime);
+  --color-violet: var(--violet);
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-instrument-serif);
+  --font-pixel: var(--font-vt323);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: var(--ink);
+}
+
+::selection {
+  background: var(--pink);
+  color: #fff;
+}
+
+@layer components {
+  /* Liquid-chrome text: the signature Y2K material, clipped to type. */
+  .chrome-text {
+    background: var(--chrome);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--ink);
+  }
+
+  .iridescent-text {
+    background: var(--iridescent);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 8s linear infinite;
+  }
+
+  /* Old-OS window: 2px outline + hard offset shadow, modern radius. */
+  .window {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 6px 6px 0 var(--shadow);
+    overflow: hidden;
+  }
+
+  .titlebar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+    border-bottom: 2px solid var(--line);
+    background: linear-gradient(90deg, var(--pink), var(--violet) 55%, var(--cyan));
+    color: #fff;
+  }
+
+  .titlebar-btn {
+    display: grid;
+    place-items: center;
+    width: 1.15rem;
+    height: 1.15rem;
+    border: 1.5px solid var(--ink);
+    border-radius: 4px;
+    background: var(--chrome);
+    color: #160f2b;
+    font-size: 0.7rem;
+    line-height: 1;
+  }
+
+  .sticker {
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--shadow);
+  }
+
+  .btn-chrome {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    background: var(--chrome);
+    color: #160f2b;
+    box-shadow: 4px 4px 0 var(--shadow);
+    transition:
+      transform 150ms ease,
+      box-shadow 150ms ease;
+  }
+  .btn-chrome:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--shadow);
+  }
+  .btn-chrome:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--shadow);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+
+  .blink {
+    animation: blink 1.2s steps(2, start) infinite;
+  }
+
+  .spin-slow {
+    animation: spin 14s linear infinite;
+  }
+
+  .construction {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--lime) 0 14px,
+      var(--ink) 14px 28px
+    );
+  }
+}
+
+/* Volt, the assistant robot */
+.volt-float {
+  animation: volt-float 3.2s ease-in-out infinite;
+}
+.volt-blink {
+  animation: volt-blink 4.5s infinite;
+}
+.volt-wave {
+  animation: volt-wave 0.9s ease-in-out 2;
+}
+.volt-glow {
+  animation: volt-glow 1.6s ease-in-out infinite;
+}
+.volt-pop {
+  transform-origin: bottom right;
+  animation: volt-pop 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+/* Happy face on hover (real pointers only, so taps don't stick) or keyboard focus */
+.volt-face-rest,
+.volt-face-happy {
+  transition: opacity 150ms ease;
+}
+.volt-face-happy {
+  opacity: 0;
+}
+.volt-btn:focus-visible .volt-face-rest {
+  opacity: 0;
+}
+.volt-btn:focus-visible .volt-face-happy {
+  opacity: 1;
+}
+.volt-btn:focus-visible .volt-hop {
+  animation: volt-hop 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media (hover: hover) {
+  .volt-btn:hover .volt-face-rest {
+    opacity: 0;
+  }
+  .volt-btn:hover .volt-face-happy {
+    opacity: 1;
+  }
+  .volt-btn:hover .volt-hop {
+    animation: volt-hop 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+@keyframes volt-hop {
+  40% {
+    transform: translateY(-10px) rotate(-4deg) scale(1.04);
+  }
+  70% {
+    transform: translateY(0) scale(0.98, 1.02);
+  }
+}
+
+@keyframes volt-float {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes volt-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+@keyframes volt-wave {
+  25% {
+    transform: rotate(-18deg);
+  }
+  75% {
+    transform: rotate(14deg);
+  }
+}
+@keyframes volt-glow {
+  50% {
+    opacity: 0.45;
+  }
+}
+@keyframes volt-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(8px);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: 200% 0;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track,
+  .blink,
+  .spin-slow,
+  .iridescent-text,
+  .volt-float,
+  .volt-blink,
+  .volt-wave,
+  .volt-glow,
+  .volt-pop,
+  .volt-btn .volt-hop {
+    animation: none !important;
+  }
 }

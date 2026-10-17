@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff8a3d"/>
+      <stop offset="1" stop-color="#ff3f6c"/>
+    </linearGradient>
+    <linearGradient id="blob" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff36b"/>
+      <stop offset="1" stop-color="#ffb13d"/>
+    </linearGradient>
+    <linearGradient id="blob2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c49bff"/>
+      <stop offset="1" stop-color="#7a4dff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <path d="M120 160 C 220 80 360 140 340 250 C 320 360 160 370 110 290 C 70 230 80 190 120 160Z" fill="url(#blob)"/>
+  <path d="M520 300 C 640 260 720 380 660 470 C 600 560 460 520 450 430 C 440 360 470 320 520 300Z" fill="url(#blob2)"/>
+  <path d="M200 600 C 300 540 440 610 420 720 C 400 830 230 860 170 770 C 120 700 140 640 200 600Z" fill="url(#blob2)"/>
+  <path d="M560 760 C 640 720 720 790 700 860 C 680 930 580 940 550 890 C 520 840 520 790 560 760Z" fill="url(#blob)"/>
+  <circle cx="460" cy="160" r="40" fill="url(#blob)"/>
+  <circle cx="300" cy="470" r="26" fill="url(#blob)"/>
+  <g font-family="Georgia, 'Times New Roman', serif" font-style="italic" fill="#1d1033">
+    <text x="60" y="560" font-size="190" letter-spacing="-6">groovy</text>
+  </g>
+  <g fill="none" stroke="#1d1033" stroke-width="3">
+    <rect x="40" y="40" width="720" height="920" rx="24"/>
+  </g>
+  <text x="70" y="930" font-family="monospace" font-size="24" fill="#1d1033" letter-spacing="4">VOL.02 — DISPLAY SPECIMEN</text>
+</svg>

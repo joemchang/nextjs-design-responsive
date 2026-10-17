@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6fbff"/>
+      <stop offset="1" stop-color="#a8d8ff"/>
+    </linearGradient>
+    <radialGradient id="orb" cx=".38" cy=".32" r=".75">
+      <stop offset="0" stop-color="#e9ffff"/>
+      <stop offset=".35" stop-color="#5fe6ff"/>
+      <stop offset=".8" stop-color="#1a6cff"/>
+      <stop offset="1" stop-color="#0b2a8f"/>
+    </radialGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#0b2a8f" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#0b2a8f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <g fill="none" stroke="#1a6cff" stroke-width="2" opacity=".25">
+    <circle cx="400" cy="470" r="300"/><circle cx="400" cy="470" r="360"/><circle cx="400" cy="470" r="420"/>
+  </g>
+  <ellipse cx="400" cy="800" rx="210" ry="34" fill="url(#shadow)"/>
+  <circle cx="400" cy="470" r="230" fill="url(#orb)"/>
+  <ellipse cx="380" cy="340" rx="160" ry="80" fill="url(#gloss)"/>
+  <ellipse cx="470" cy="640" rx="90" ry="26" fill="#9ff6ff" opacity=".45"/>
+  <g fill="#fff">
+    <rect x="300" y="450" width="18" height="60" rx="9"/>
+    <rect x="336" y="420" width="18" height="120" rx="9"/>
+    <rect x="372" y="440" width="18" height="80" rx="9"/>
+    <rect x="408" y="400" width="18" height="160" rx="9"/>
+    <rect x="444" y="430" width="18" height="100" rx="9"/>
+    <rect x="480" y="455" width="18" height="50" rx="9"/>
+  </g>
+  <text x="400" y="910" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="44" fill="#0b2a8f" letter-spacing="10">ORB.FM</text>
+</svg>
