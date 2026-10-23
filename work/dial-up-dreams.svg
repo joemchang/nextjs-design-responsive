@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b1140"/>
+      <stop offset="1" stop-color="#3a1a6b"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5fd2"/>
+      <stop offset=".55" stop-color="#ffb36b"/>
+      <stop offset="1" stop-color="#ffe86b"/>
+    </linearGradient>
+    <linearGradient id="case" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef0f6"/>
+      <stop offset="1" stop-color="#b6bccb"/>
+    </linearGradient>
+    <pattern id="scan" width="4" height="6" patternUnits="userSpaceOnUse">
+      <rect width="4" height="2" fill="#000" opacity=".18"/>
+    </pattern>
+    <clipPath id="crt"><rect x="200" y="300" width="400" height="300" rx="30"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <g fill="#fff" opacity=".8">
+    <circle cx="90" cy="120" r="2"/><circle cx="700" cy="90" r="3"/><circle cx="620" cy="200" r="1.5"/>
+    <circle cx="140" cy="260" r="1.5"/><circle cx="420" cy="80" r="2"/><circle cx="260" cy="160" r="1"/>
+  </g>
+  <rect x="150" y="250" width="500" height="420" rx="48" fill="url(#case)"/>
+  <rect x="150" y="250" width="500" height="420" rx="48" fill="none" stroke="#fff" stroke-width="4" opacity=".7"/>
+  <rect x="200" y="300" width="400" height="300" rx="30" fill="url(#screen)"/>
+  <g clip-path="url(#crt)">
+    <circle cx="400" cy="500" r="110" fill="#fff6c7" opacity=".9"/>
+    <g fill="url(#screen)">
+      <rect x="200" y="500" width="400" height="10"/><rect x="200" y="525" width="400" height="14"/><rect x="200" y="556" width="400" height="18"/>
+    </g>
+    <path d="M200 560 L300 470 L380 540 L460 450 L600 560 V600 H200Z" fill="#3a1a6b" opacity=".85"/>
+    <rect x="200" y="300" width="400" height="300" fill="url(#scan)"/>
+    <ellipse cx="320" cy="340" rx="140" ry="40" fill="#fff" opacity=".18"/>
+  </g>
+  <rect x="300" y="670" width="200" height="40" fill="#a9afc0"/>
+  <rect x="220" y="710" width="360" height="40" rx="12" fill="url(#case)"/>
+  <circle cx="590" cy="635" r="9" fill="#3dff8a"/>
+  <rect x="230" y="626" width="120" height="16" rx="8" fill="#9aa1b4"/>
+  <text x="400" y="850" text-anchor="middle" font-family="monospace" font-size="38" fill="#8fe9ff" letter-spacing="6">CONNECTING...</text>
+  <rect x="220" y="880" width="360" height="18" rx="9" fill="#fff" opacity=".15"/>
+  <rect x="220" y="880" width="230" height="18" rx="9" fill="#8fe9ff"/>
+</svg>
