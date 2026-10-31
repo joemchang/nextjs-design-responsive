@@ -2,15 +2,38 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import type { Category, Project } from "./content";
+import { TitleBar } from "./title-bar";
 
-const filters: ("All" | Category)[] = [
-  "All",
-  "Branding",
-  "Digital",
-  "Illustration",
-  "Packaging",
-];
+export type Project = {
+  slug: string;
+  title: string;
+  file: string;
+  image: string;
+  alt: string;
+  category: string;
+  year: number;
+  blurb: string;
+  // Bento footprint on large screens. "hero" = 2×2, "wide" = 2×1.
+  size?: "hero" | "wide";
+};
+
+export type WorkGridLabels = {
+  /** Label of the filter that shows every project. */
+  all: string;
+  filterGroup: string;
+  close: string;
+  prev: string;
+  next: string;
+};
+
+export type WorkGridProps = {
+  projects: Project[];
+  labels: WorkGridLabels;
+  /** Window-control glyphs on each card's title bar. */
+  cardControls?: string[];
+  /** Glyph in the card's open affordance. */
+  openIcon?: string;
+};
 
 const sizeClasses = {
   hero: "md:col-span-2 lg:row-span-2",
@@ -18,26 +41,16 @@ const sizeClasses = {
   single: "",
 };
 
-function TitleBar({ file }: { file: string }) {
-  return (
-    <div className="titlebar">
-      <span className="font-pixel text-lg leading-none truncate">{file}</span>
-      <span className="ml-auto flex gap-1" aria-hidden>
-        <span className="titlebar-btn">_</span>
-        <span className="titlebar-btn">□</span>
-        <span className="titlebar-btn">×</span>
-      </span>
-    </div>
-  );
-}
+export function WorkGrid({ projects, labels, cardControls, openIcon }: WorkGridProps) {
+  const categories = [...new Set(projects.map((p) => p.category))];
+  const filters = [labels.all, ...categories];
 
-export function WorkGrid({ projects }: { projects: Project[] }) {
-  const [filter, setFilter] = useState<(typeof filters)[number]>("All");
+  const [filter, setFilter] = useState(labels.all);
   const [open, setOpen] = useState<number | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  const visible =
-    filter === "All" ? projects : projects.filter((p) => p.category === filter);
+  const showAll = filter === labels.all;
+  const visible = showAll ? projects : projects.filter((p) => p.category === filter);
   const active = open === null ? null : visible[open];
 
   useEffect(() => {
@@ -52,14 +65,10 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
 
   return (
     <>
-      <div
-        role="group"
-        aria-label="Filter projects by category"
-        className="flex flex-wrap gap-2 mb-8"
-      >
+      <div role="group" aria-label={labels.filterGroup} className="flex flex-wrap gap-2 mb-8">
         {filters.map((f) => {
           const count =
-            f === "All" ? projects.length : projects.filter((p) => p.category === f).length;
+            f === labels.all ? projects.length : projects.filter((p) => p.category === f).length;
           const selected = filter === f;
           return (
             <button
@@ -79,7 +88,7 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
 
       <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[360px] grid-flow-dense">
         {visible.map((p, i) => {
-          const size = filter === "All" ? (p.size ?? "single") : "single";
+          const size = showAll ? (p.size ?? "single") : "single";
           return (
             <li key={p.slug} className={sizeClasses[size]}>
               <button
@@ -87,7 +96,7 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
                 onClick={() => setOpen(i)}
                 className="window group flex h-full w-full flex-col text-left transition-transform duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_var(--shadow)] focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-pink"
               >
-                <TitleBar file={p.file} />
+                <TitleBar title={p.file} controls={cardControls} />
                 <div
                   className={`relative w-full overflow-hidden border-b-2 border-line aspect-[4/5] lg:aspect-auto lg:flex-1 ${
                     size !== "single" ? "md:aspect-[16/10]" : ""
@@ -109,12 +118,14 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
                       {p.category} · {p.year}
                     </p>
                   </div>
-                  <span
-                    aria-hidden
-                    className="ml-auto grid size-9 shrink-0 place-items-center rounded-full border-2 border-line transition-colors group-hover:bg-pink group-hover:text-white"
-                  >
-                    ↗
-                  </span>
+                  {openIcon && (
+                    <span
+                      aria-hidden
+                      className="ml-auto grid size-9 shrink-0 place-items-center rounded-full border-2 border-line transition-colors group-hover:bg-pink group-hover:text-white"
+                    >
+                      {openIcon}
+                    </span>
+                  )}
                 </div>
               </button>
             </li>
@@ -139,7 +150,7 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
                 type="button"
                 onClick={() => setOpen(null)}
                 className="titlebar-btn ml-auto cursor-pointer"
-                aria-label="Close"
+                aria-label={labels.close}
               >
                 ×
               </button>
@@ -158,10 +169,10 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
                 <p className="text-muted leading-relaxed">{active.blurb}</p>
                 <div className="mt-auto flex gap-3 pt-4">
                   <button type="button" onClick={() => step(-1)} className="btn-chrome px-5 py-2 text-sm font-semibold">
-                    ← Prev
+                    {labels.prev}
                   </button>
                   <button type="button" onClick={() => step(1)} className="btn-chrome px-5 py-2 text-sm font-semibold">
-                    Next →
+                    {labels.next}
                   </button>
                 </div>
               </div>

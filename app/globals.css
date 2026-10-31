@@ -212,7 +212,7 @@ body {
 .volt-blink {
   animation: volt-blink 4.5s infinite;
 }
-.volt-wave {
+.volt-btn[data-waving="true"] .volt-wave {
   animation: volt-wave 0.9s ease-in-out 2;
 }
 .volt-glow {

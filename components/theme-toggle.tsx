@@ -4,7 +4,16 @@ import { useSyncExternalStore } from "react";
 
 type Theme = "light" | "dark";
 
-// Also read by the inline script in layout.tsx; keep in sync.
+export type ThemeToggleProps = {
+  label: string;
+  switchToLightTitle: string;
+  switchToDarkTitle: string;
+  /** Icons shown on the track; the knob slides over the inactive one. */
+  lightIcon: string;
+  darkIcon: string;
+};
+
+// Also read by the inline script in app/layout.tsx; keep in sync.
 const THEME_KEY = "theme";
 
 const media = () => window.matchMedia("(prefers-color-scheme: dark)");
@@ -28,7 +37,13 @@ function subscribe(cb: () => void) {
   };
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({
+  label,
+  switchToLightTitle,
+  switchToDarkTitle,
+  lightIcon,
+  darkIcon,
+}: ThemeToggleProps) {
   const theme = useSyncExternalStore(subscribe, getTheme, () => null);
   const dark = theme === "dark";
 
@@ -45,14 +60,14 @@ export function ThemeToggle() {
       type="button"
       role="switch"
       aria-checked={dark}
-      aria-label="Dark mode"
-      title={dark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={label}
+      title={dark ? switchToLightTitle : switchToDarkTitle}
       onClick={toggle}
       disabled={theme === null}
       className="relative flex h-8 w-15 shrink-0 cursor-pointer items-center justify-between rounded-full border-2 border-line bg-[linear-gradient(90deg,#ffe86b,#ff8ad9)] px-1.5 text-xs dark:bg-[linear-gradient(90deg,#3b0a6b,#0b2a8f)] focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-pink"
     >
-      <span aria-hidden className="leading-none">☀</span>
-      <span aria-hidden className="leading-none text-white">☾</span>
+      <span aria-hidden className="leading-none">{lightIcon}</span>
+      <span aria-hidden className="leading-none text-white">{darkIcon}</span>
       {/* Chrome knob slides over the inactive icon */}
       <span
         aria-hidden
